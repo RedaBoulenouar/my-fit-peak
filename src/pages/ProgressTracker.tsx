@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BarChart3, Plus, Trophy, TrendingUp } from "lucide-react";
+import FitnessQuiz from "@/components/FitnessQuiz";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
@@ -68,6 +69,11 @@ const ProgressTracker = () => {
           </div>
           <p className="text-muted-foreground mb-10">Suis ton évolution et bats tes records.</p>
         </motion.div>
+
+        {/* Quiz */}
+        <div className="mb-10">
+          <FitnessQuiz />
+        </div>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-10">
