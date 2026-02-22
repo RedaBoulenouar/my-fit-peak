@@ -123,21 +123,6 @@ const ProgressTracker = () => {
           </Button>
         </div>
 
-        {/* Recent logs */}
-        <div className="space-y-2">
-          <h2 className="font-heading text-lg font-bold mb-3">Historique récent</h2>
-          {[...logs].reverse().slice(0, 8).map((log) => (
-            <div key={log.id} className="flex items-center justify-between rounded-lg border border-border bg-card px-5 py-3">
-              <div>
-                <span className="font-heading font-bold text-foreground">{log.exercise}</span>
-                <span className="ml-3 text-sm text-muted-foreground">{log.date}</span>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                {log.weight}kg × {log.reps} × {log.sets}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
