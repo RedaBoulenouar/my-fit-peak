@@ -1,13 +1,27 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Dumbbell, RefreshCw, Clock, Flame, ChevronDown } from "lucide-react";
+import { Dumbbell, RefreshCw, Clock, Flame, ChevronDown, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const objectives = [
+  { label: "Prise de masse", value: "masse", desc: "Charges lourdes, repos longs" },
+  { label: "Perte de poids", value: "perte", desc: "Circuits, intensité haute" },
+  { label: "Endurance", value: "endurance", desc: "Reps élevées, peu de repos" },
+  { label: "Force", value: "force", desc: "Charges max, séries courtes" },
+];
 
 const muscleGroups = [
   "Pectoraux", "Dos", "Épaules", "Biceps", "Triceps", "Jambes", "Abdominaux", "Full Body"
 ];
 
-const exerciseDB: Record<string, { name: string; sets: number; reps: string; rest: string }[]> = {
+interface Exercise {
+  name: string;
+  sets: number;
+  reps: string;
+  rest: string;
+}
+
+const exerciseDB: Record<string, Exercise[]> = {
   Pectoraux: [
     { name: "Développé couché", sets: 4, reps: "8-10", rest: "90s" },
     { name: "Développé incliné haltères", sets: 3, reps: "10-12", rest: "75s" },
@@ -61,15 +75,33 @@ const exerciseDB: Record<string, { name: string; sets: number; reps: string; res
   ],
 };
 
+const adaptToObjective = (exercises: Exercise[], objective: string): Exercise[] => {
+  return exercises.map((ex) => {
+    switch (objective) {
+      case "masse":
+        return { ...ex, sets: ex.sets + 1, reps: "6-8", rest: "120s" };
+      case "perte":
+        return { ...ex, sets: 4, reps: "15-20", rest: "30s" };
+      case "endurance":
+        return { ...ex, sets: 3, reps: "20-25", rest: "20s" };
+      case "force":
+        return { ...ex, sets: 5, reps: "3-5", rest: "180s" };
+      default:
+        return ex;
+    }
+  });
+};
+
 const WorkoutGenerator = () => {
+  const [objective, setObjective] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
-  const [workout, setWorkout] = useState<typeof exerciseDB[string] | null>(null);
+  const [workout, setWorkout] = useState<Exercise[] | null>(null);
 
   const generate = () => {
-    if (!selected) return;
-    const exercises = exerciseDB[selected];
-    // Shuffle slightly for variety
-    const shuffled = [...exercises].sort(() => Math.random() - 0.5);
+    if (!selected || !objective) return;
+    const base = exerciseDB[selected];
+    const adapted = adaptToObjective(base, objective);
+    const shuffled = [...adapted].sort(() => Math.random() - 0.5);
     setWorkout(shuffled);
   };
 
@@ -81,29 +113,61 @@ const WorkoutGenerator = () => {
             <Dumbbell className="h-8 w-8 text-primary" />
             <h1 className="font-heading text-3xl sm:text-4xl font-bold">Générateur d'entraînement</h1>
           </div>
-          <p className="text-muted-foreground mb-10">Sélectionne un groupe musculaire et génère ton programme.</p>
+          <p className="text-muted-foreground mb-10">Choisis ton objectif, ton muscle et génère ton programme.</p>
         </motion.div>
 
+        {/* Objective selector */}
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <Target className="h-4 w-4 text-primary" />
+            <p className="font-heading font-bold text-sm text-foreground">Ton objectif</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {objectives.map((obj) => (
+              <button
+                key={obj.value}
+                onClick={() => { setObjective(obj.value); setWorkout(null); }}
+                className={`rounded-lg border px-4 py-3 text-left transition-all ${
+                  objective === obj.value
+                    ? "border-primary bg-primary/10"
+                    : "border-border bg-card hover:border-primary/40"
+                }`}
+              >
+                <span className={`text-sm font-bold font-heading block ${objective === obj.value ? "text-primary" : "text-foreground"}`}>
+                  {obj.label}
+                </span>
+                <span className="text-xs text-muted-foreground">{obj.desc}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Muscle group selector */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-          {muscleGroups.map((group) => (
-            <button
-              key={group}
-              onClick={() => { setSelected(group); setWorkout(null); }}
-              className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
-                selected === group
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
-              }`}
-            >
-              {group}
-            </button>
-          ))}
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <Dumbbell className="h-4 w-4 text-primary" />
+            <p className="font-heading font-bold text-sm text-foreground">Groupe musculaire</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {muscleGroups.map((group) => (
+              <button
+                key={group}
+                onClick={() => { setSelected(group); setWorkout(null); }}
+                className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
+                  selected === group
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                }`}
+              >
+                {group}
+              </button>
+            ))}
+          </div>
         </div>
 
         <Button
           onClick={generate}
-          disabled={!selected}
+          disabled={!selected || !objective}
           size="lg"
           className="w-full gradient-primary text-primary-foreground font-heading font-bold mb-10"
         >
@@ -114,14 +178,14 @@ const WorkoutGenerator = () => {
         <AnimatePresence mode="wait">
           {workout && (
             <motion.div
-              key={selected}
+              key={`${objective}-${selected}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               className="space-y-3"
             >
               <h2 className="font-heading text-xl font-bold text-primary mb-4">
-                Programme {selected}
+                Programme {selected} — {objectives.find((o) => o.value === objective)?.label}
               </h2>
               {workout.map((ex, i) => (
                 <motion.div
