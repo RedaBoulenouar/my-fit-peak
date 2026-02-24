@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { BarChart3 } from "lucide-react";
-import FitnessQuiz from "@/components/FitnessQuiz";
-import ProgressionQuiz from "@/components/ProgressionQuiz";
+import CombinedProgressQuiz from "@/components/CombinedProgressQuiz";
 
 const ProgressTracker = () => {
   return (
@@ -15,15 +14,7 @@ const ProgressTracker = () => {
           <p className="text-muted-foreground mb-10">Suis ton évolution et bats tes records.</p>
         </motion.div>
 
-        {/* Quiz objectif */}
-        <div className="mb-10">
-          <FitnessQuiz />
-        </div>
-
-        {/* Quiz progression */}
-        <div className="mb-10">
-          <ProgressionQuiz />
-        </div>
+        <CombinedProgressQuiz />
       </div>
     </div>
   );
