@@ -53,7 +53,7 @@ const Index = () => {
             <h1 className="font-heading text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
               MyFit<span className="text-primary text-glow">Peak</span>
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+            <p className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto mb-10">
               Ton coach fitness intelligent. Génère tes entraînements, suis ta progression et optimise ta nutrition.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -130,6 +130,22 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-10 px-4">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Dumbbell className="h-5 w-5 text-primary" />
+            <span className="font-heading font-bold text-foreground">MyFitPeak</span>
+          </div>
+          <nav className="flex items-center gap-6 text-sm text-muted-foreground">
+            <Link to="/workout" className="hover:text-foreground transition-colors">Entraînement</Link>
+            <Link to="/progress" className="hover:text-foreground transition-colors">Progression</Link>
+            <Link to="/macros" className="hover:text-foreground transition-colors">Macros</Link>
+          </nav>
+          <p className="text-xs text-muted-foreground">© 2026 MyFitPeak. Tous droits réservés.</p>
+        </div>
+      </footer>
     </div>
   );
 };
