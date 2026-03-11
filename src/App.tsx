@@ -9,6 +9,7 @@ import WorkoutGenerator from "./pages/WorkoutGenerator";
 import ProgressTracker from "./pages/ProgressTracker";
 import MacroCalculator from "./pages/MacroCalculator";
 import NotFound from "./pages/NotFound";
+import Onboarding from "./pages/Onboarding";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
         <Navbar />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/workout" element={<WorkoutGenerator />} />
           <Route path="/progress" element={<ProgressTracker />} />
           <Route path="/macros" element={<MacroCalculator />} />

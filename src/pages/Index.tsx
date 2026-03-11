@@ -58,7 +58,7 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg" className="gradient-primary text-primary-foreground font-heading font-bold text-lg px-8 py-6 animate-pulse-glow">
-                <Link to="/workout">
+                <Link to="/onboarding">
                   Commencer <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
