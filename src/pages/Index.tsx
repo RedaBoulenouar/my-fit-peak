@@ -142,6 +142,7 @@ const Index = () => {
             <Link to="/workout" className="hover:text-foreground transition-colors">Entraînement</Link>
             <Link to="/progress" className="hover:text-foreground transition-colors">Progression</Link>
             <Link to="/macros" className="hover:text-foreground transition-colors">Macros</Link>
+            <Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link>
           </nav>
           <p className="text-xs text-muted-foreground">© 2026 MyFitPeak. Tous droits réservés.</p>
         </div>

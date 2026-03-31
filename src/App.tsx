@@ -10,6 +10,7 @@ import ProgressTracker from "./pages/ProgressTracker";
 import MacroCalculator from "./pages/MacroCalculator";
 import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
+import Blog from "./pages/Blog";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/workout" element={<WorkoutGenerator />} />
           <Route path="/progress" element={<ProgressTracker />} />
           <Route path="/macros" element={<MacroCalculator />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </HashRouter>
