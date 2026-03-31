@@ -10,6 +10,7 @@ import ProgressTracker from "./pages/ProgressTracker";
 import MacroCalculator from "./pages/MacroCalculator";
 import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
+import Blog from "./pages/Blog";
 
 const queryClient = new QueryClient();
 
