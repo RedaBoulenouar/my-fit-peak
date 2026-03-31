@@ -8,6 +8,7 @@ const navItems = [
   { to: "/progress", label: "Progression", icon: BarChart3 },
   { to: "/macros", label: "Macros", icon: Calculator },
   { to: "/blog", label: "Blog", icon: BookOpen },
+  { to: "/contact", label: "Contact", icon: Mail },
 ];
 
 const Navbar = () => {
