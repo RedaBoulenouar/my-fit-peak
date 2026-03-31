@@ -11,6 +11,7 @@ import MacroCalculator from "./pages/MacroCalculator";
 import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
 import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
