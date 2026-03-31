@@ -29,6 +29,7 @@ const App = () => (
           <Route path="/progress" element={<ProgressTracker />} />
           <Route path="/macros" element={<MacroCalculator />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </HashRouter>
