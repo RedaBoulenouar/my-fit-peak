@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Dumbbell, BarChart3, Calculator, Home, BookOpen } from "lucide-react";
+import { Dumbbell, BarChart3, Calculator, Home, BookOpen, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navItems = [
@@ -8,6 +8,7 @@ const navItems = [
   { to: "/progress", label: "Progression", icon: BarChart3 },
   { to: "/macros", label: "Macros", icon: Calculator },
   { to: "/blog", label: "Blog", icon: BookOpen },
+  { to: "/contact", label: "Contact", icon: Mail },
 ];
 
 const Navbar = () => {
