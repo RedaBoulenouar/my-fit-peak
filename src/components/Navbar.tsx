@@ -7,6 +7,7 @@ const navItems = [
   { to: "/workout", label: "Entraînement", icon: Dumbbell },
   { to: "/progress", label: "Progression", icon: BarChart3 },
   { to: "/macros", label: "Macros", icon: Calculator },
+  { to: "/blog", label: "Blog", icon: BookOpen },
 ];
 
 const Navbar = () => {

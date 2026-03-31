@@ -27,6 +27,7 @@ const App = () => (
           <Route path="/workout" element={<WorkoutGenerator />} />
           <Route path="/progress" element={<ProgressTracker />} />
           <Route path="/macros" element={<MacroCalculator />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </HashRouter>
