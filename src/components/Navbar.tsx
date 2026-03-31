@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Dumbbell, BarChart3, Calculator, Home } from "lucide-react";
+import { Dumbbell, BarChart3, Calculator, Home, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navItems = [
